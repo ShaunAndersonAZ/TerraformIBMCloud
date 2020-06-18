@@ -70,8 +70,16 @@ resource "ibm_pi_instance" "powertest-instance" {
 
 ## Need to figure out the 'pi_cloud_instance_id" field....no other configuration 
 #  has been done for the Power section.
-
 }
+
+resource "ibm_pi_network" "powertest-net" {
+  pi_cloud_instance_id = ibm_pi_instance.powertest-instance.id
+  pi_network_name = "powertest-net1"
+  pi_network_type = "vlan"
+  pi_dns = ["127.0.0.1"]
+  pi_cidr = "10.240.20.0/24"
+}
+
 ######################################
 # /$$    /$$ /$$$$$$$   /$$$$$$ 
 #| $$   | $$| $$__  $$ /$$__  $$
@@ -116,7 +124,7 @@ resource "ibm_is_security_group_rule" "test1-secgrp-ssh" {
   }
 }
 
-# Main subnet 10.240.30.0/24
+# Main VPC subnet 10.240.30.0/24
 resource "ibm_is_subnet" "tf-test1-subnet" {
   name    = "test1-subnet"
   vpc     = ibm_is_vpc.tf-test1-vpc.id 
