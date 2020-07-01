@@ -6,12 +6,7 @@ variable "region" {
     description = "IBM Cloud region being used"
     default = "us-south"
 }
-variable "image" {
-    description = "Image used (VPC)"
-}
-variable "profile" {
-    description = "VSI Profile to use (VPC)"
-}
+
 variable "sshkey" {
     description = "SSH Key to use"
 }
@@ -25,12 +20,12 @@ variable "ibmcloudinstanceid" {
     description = "IBM Cloud Instance ID"
 }
 
-variable "networks" {
+/* variable "networks" {
     description = "Power instance network to use"
     default = ["powertest-net1"]
   
 }
-
+ */
 
 # Provider information
 provider "ibm" {
@@ -51,6 +46,7 @@ resource "ibm_pi_key" "powertest-key" {
 }
 
 ##################################################
+
 # /$$$$$$$                                            
 #| $$__  $$                                           
 #| $$  \ $$ /$$$$$$  /$$  /$$  /$$  /$$$$$$   /$$$$$$ 
